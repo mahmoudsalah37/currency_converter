@@ -1,53 +1,89 @@
 # Currency Converter
 
-A modern, production-ready Currency Converter application built with Flutter, showcasing Clean Architecture, BLoC for state management, and a stunning Glassmorphism UI.
+A modern currency converter application built with Flutter, following Clean Architecture principles and implementing the BLoC pattern for state management.
+
+## Build Instructions
+
+1. Install Flutter SDK (version 3.0.0 or higher)
+2. Clone the repository:
+   ```sh
+   git clone <repository-url>
+   cd currency_converter
+   ```
+3. Install dependencies:
+   ```sh
+   flutter pub get
+   ```
+4. Run code generation for DI, routing, and freezed models:
+   ```sh
+   flutter pub run build_runner build --delete-conflicting-outputs
+   ```
+5. Run the app:
+   ```sh
+   flutter run
+   ```
 
 ## Architecture
 
-This project follows the principles of **Clean Architecture** to ensure a scalable, maintainable, and testable codebase. The code is organized into three distinct layers:
+This project implements **Clean Architecture** with three distinct layers:
 
--   **Domain Layer**: The core of the application. It contains the business logic, entities, and abstract repository definitions. This layer is pure Dart and has no dependencies on Flutter or any external packages.
--   **Data Layer**: Responsible for all data operations. It contains repository implementations that fetch data from remote (API) and local (database) sources.
--   **Presentation Layer**: The UI of the application. It uses the BLoC pattern to manage state and renders widgets based on the current state.
+1. **Data Layer**:
+   - Handles data operations from both API and local storage
+   - Contains repository implementations and data sources
+   - Manages data caching and offline-first functionality
 
-## Features
+2. **Domain Layer**:
+   - Core business logic layer
+   - Contains entities, repository interfaces, and use cases
+   - Pure Dart code with no external dependencies
 
--   Real-time currency conversion.
--   Searchable list of all available currencies.
--   7-day historical data chart for selected currency pairs.
--   Offline-first experience with robust API caching.
--   Stunning Glassmorphism UI with smooth animations.
+3. **Presentation Layer**:
+   - UI implementation using Material Design
+   - BLoC pattern for state management
+   - Handles user interactions and state updates
 
-## Getting Started
+### Why Clean Architecture?
+- Clear separation of concerns
+- Highly testable due to layer independence
+- Easy to maintain and scale
+- Dependencies point inwards, making the domain layer completely independent
 
-### 1. Prerequisites
+## Image Loading
 
--   Flutter SDK (version 3.0.0 or higher)
--   Dart SDK
+The app uses Flutter's built-in `Image.network` widget for loading flag images from flagcdn.com. Reasons for this choice:
 
-### 2. Installation
+1. **Simplicity**: Native Flutter solution without additional dependencies
+2. **Performance**: Built-in caching mechanism
+3. **Error Handling**: Easy to implement loading and error states
+4. **Memory Management**: Automatic image cache management by Flutter
 
-1.  **Clone the repository:**
-    ```sh
-    git clone <repository-url>
-    cd currency_converter
-    ```
+## Database
 
-2.  **Install dependencies:**
-    ```sh
-    flutter pub get
-    ```
+The app uses **Hive** as the local database. Reasons for choosing Hive:
 
-### 3. Code Generation
+1. **Performance**: Fast, lightweight NoSQL database
+2. **Cross-Platform**: Works seamlessly on all platforms
+3. **Type Safety**: Strong typing with code generation
+4. **No Native Dependencies**: Pure Dart implementation
+5. **Easy to Use**: Simple API with minimal setup
+6. **Offline Support**: Perfect for implementing offline-first architecture
 
-This project uses code generation for dependency injection, routing, and data models. Run the following command to generate the necessary files:
+## Testing
 
-```sh
-flutter pub run build_runner build --delete-conflicting-outputs
-```
+Unit tests are implemented for:
+- API integration
+- Business logic
+- Repository layer
+- Use cases
 
-### 4. Run the App
+(Note: Unit tests need to be implemented)
 
-```sh
-flutter run
-```
+## Dependencies
+
+- **State Management**: flutter_bloc
+- **Dependency Injection**: get_it + injectable
+- **API Client**: dio
+- **Local Database**: hive
+- **Navigation**: auto_route
+- **Charts**: fl_chart
+- **Loading Effects**: shimmer

@@ -41,7 +41,8 @@ class CurrencySelectorWidget extends StatelessWidget {
                           backgroundColor: Colors.grey,
                         );
                       },
-                      errorBuilder: (context, error, stackTrace) => const CircleAvatar(
+                      errorBuilder: (context, error, stackTrace) =>
+                          const CircleAvatar(
                         backgroundColor: Colors.grey,
                       ),
                     ),
@@ -54,10 +55,14 @@ class CurrencySelectorWidget extends StatelessWidget {
                     children: [
                       Text(
                         currency.name,
-                        style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600),
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600),
                         overflow: TextOverflow.ellipsis,
                       ),
-                      Text(currency.code, style: const TextStyle(color: Colors.white70)),
+                      Text(currency.code,
+                          style: const TextStyle(color: Colors.white70)),
                     ],
                   ),
                 ),

@@ -6,7 +6,8 @@ class CurrencyListItem extends StatelessWidget {
   final Currency currency;
   final VoidCallback onTap;
 
-  const CurrencyListItem({super.key, required this.currency, required this.onTap});
+  const CurrencyListItem(
+      {super.key, required this.currency, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
