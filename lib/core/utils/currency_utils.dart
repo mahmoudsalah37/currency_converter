@@ -1,34 +1,19 @@
 class CurrencyUtils {
-  static final Map<String, String> _currencyToCountryCode = {
-    'USD': 'us',
-    'EUR': 'eu',
-    'JPY': 'jp',
-    'GBP': 'gb',
-    'AUD': 'au',
-    'CAD': 'ca',
-    'CHF': 'ch',
-    'CNY': 'cn',
-    'SEK': 'se',
-    'NZD': 'nz',
-    'MXN': 'mx',
-    'SGD': 'sg',
-    'HKD': 'hk',
-    'NOK': 'no',
-    'KRW': 'kr',
-    'TRY': 'tr',
-    'RUB': 'ru',
-    'INR': 'in',
-    'BRL': 'br',
-    'ZAR': 'za',
-    // Add more mappings as needed
-  };
+  static String _getCountryCode(String currencyCode) {
+    // Convert currency code to lowercase country code
+    // Most currency codes are based on ISO 4217 and can be converted to ISO 3166-1 alpha-2 country codes
+    String code = currencyCode.toUpperCase();
+
+    // Special cases first (e.g., EUR)
+    if (code == 'EUR') return 'eu';
+
+    // For most currencies, the first two letters correspond to the country code
+    // We'll make it lowercase as flagcdn uses lowercase country codes
+    return code.substring(0, 2).toLowerCase();
+  }
 
   static String getFlagUrl(String currencyCode) {
-    final countryCode = _currencyToCountryCode[currencyCode.toUpperCase()];
-    if (countryCode != null) {
-      return 'https://flagcdn.com/w80/$countryCode.png';
-    }
-    // Fallback for currencies without a direct mapping
-    return 'https://flagcdn.com/w80/uno.png'; // A generic flag
+    final countryCode = _getCountryCode(currencyCode);
+    return 'https://flagcdn.com/w80/$countryCode.png';
   }
 }
