@@ -6,7 +6,9 @@ import 'package:injectable/injectable.dart';
 
 abstract class RemoteDataSource {
   Future<List<CurrencyModel>> getCurrencies();
+
   Future<ExchangeRateModel> getLatestRate(String base, String target);
+
   Future<List<HistoricalDataModel>> getHistoricalData(
     String startDate,
     String endDate,
@@ -23,21 +25,28 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<List<CurrencyModel>> getCurrencies() async {
-    final response = await _dioClient.get('symbols');
-    final symbols = response.data['symbols'] as Map<String, dynamic>;
+    final response = await _dioClient.get('list');
+    final symbols = response.data['currencies'] as Map<String, dynamic>;
     return symbols.entries.map((entry) {
-      return CurrencyModel(code: entry.key, name: entry.value['description']);
+      return CurrencyModel(code: entry.key, name: entry.value as String);
     }).toList();
   }
 
   @override
   Future<ExchangeRateModel> getLatestRate(String base, String target) async {
     final response = await _dioClient.get(
-      'latest',
-      queryParameters: {'base': base, 'symbols': target},
+      'live',
+      queryParameters: {
+        'source': base,
+        'currencies': target,
+      },
     );
-    final rates = response.data['rates'] as Map<String, dynamic>;
-    return ExchangeRateModel(base: base, target: target, rate: rates[target]);
+    final rates = response.data['quotes'] as Map<String, dynamic>;
+    return ExchangeRateModel(
+      base: base,
+      target: target,
+      rate: rates[base + target],
+    );
   }
 
   @override
@@ -48,18 +57,18 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     String target,
   ) async {
     final response = await _dioClient.get(
-      'timeseries',
+      'timeframe',
       queryParameters: {
         'start_date': startDate,
         'end_date': endDate,
-        'base': base,
-        'symbols': target,
+        'source': base,
+        'currencies': target,
       },
     );
     final rates = response.data['rates'] as Map<String, dynamic>;
     return rates.entries.map((entry) {
       final date = DateTime.parse(entry.key);
-      final rate = (entry.value as Map<String, dynamic>)[target] as double;
+      final rate = (entry.value as Map<String, dynamic>)[base + target] as double;
       return HistoricalDataModel(date: date, rate: rate);
     }).toList();
   }

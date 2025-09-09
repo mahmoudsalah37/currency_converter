@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'api_config.dart';
 
 @lazySingleton
 class DioClient {
@@ -15,10 +16,18 @@ class DioClient {
       receiveTimeout: const Duration(seconds: 15),
     ));
 
+    dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (options, handler) {
+        options.queryParameters['access_key'] = apiKey;
+        return handler.next(options);
+      },
+    ));
+
     return DioClient._(dio);
   }
 
-  Future<Response<T>> get<T>(String path, {Map<String, dynamic>? queryParameters}) {
+  Future<Response<T>> get<T>(String path,
+      {Map<String, dynamic>? queryParameters}) {
     return _dio.get(path, queryParameters: queryParameters);
   }
 }
