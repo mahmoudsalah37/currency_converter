@@ -6,7 +6,6 @@ import 'package:currency_converter/presentation/bloc/splash/splash_event.dart';
 import 'package:currency_converter/presentation/bloc/splash/splash_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 @RoutePage()
 class SplashScreen extends StatefulWidget {
@@ -30,9 +29,10 @@ class _SplashScreenState extends State<SplashScreen> {
     return FutureBuilder<SplashBloc>(
       future: _splashBlocFuture,
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+        if (snapshot.connectionState == ConnectionState.done &&
+            snapshot.hasData) {
           return BlocProvider.value(
-            value: snapshot.data! ..add(const InitializeApp()),
+            value: snapshot.data!..add(const InitializeApp()),
             child: BlocListener<SplashBloc, SplashState>(
               listener: (context, state) {
                 state.maybeWhen(
@@ -46,11 +46,25 @@ class _SplashScreenState extends State<SplashScreen> {
                 );
               },
               child: Scaffold(
+                backgroundColor: const Color(0xFF4A90E2),
                 body: Center(
-                  child: SvgPicture.asset(
-                    'assets/images/logo.svg',
+                  child: Container(
                     width: 150,
                     height: 150,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.white, width: 8),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        'CC',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 48,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),

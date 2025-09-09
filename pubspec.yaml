@@ -38,7 +38,6 @@ dependencies:
   auto_route: ^7.8.4
 
   # UI & UX
-  flutter_svg: ^2.0.9
   fl_chart: ^0.66.0
   shimmer: ^3.0.0
   google_fonts: ^6.1.0
