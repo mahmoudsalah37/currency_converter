@@ -14,17 +14,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-ExchangeRateModel _$ExchangeRateModelFromJson(Map<String, dynamic> json) {
-  return _ExchangeRateModel.fromJson(json);
-}
-
 /// @nodoc
 mixin _$ExchangeRateModel {
   String get base => throw _privateConstructorUsedError;
   String get target => throw _privateConstructorUsedError;
   double get rate => throw _privateConstructorUsedError;
+  int? get timestamp => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ExchangeRateModelCopyWith<ExchangeRateModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -36,7 +32,7 @@ abstract class $ExchangeRateModelCopyWith<$Res> {
           ExchangeRateModel value, $Res Function(ExchangeRateModel) then) =
       _$ExchangeRateModelCopyWithImpl<$Res, ExchangeRateModel>;
   @useResult
-  $Res call({String base, String target, double rate});
+  $Res call({String base, String target, double rate, int? timestamp});
 }
 
 /// @nodoc
@@ -55,6 +51,7 @@ class _$ExchangeRateModelCopyWithImpl<$Res, $Val extends ExchangeRateModel>
     Object? base = null,
     Object? target = null,
     Object? rate = null,
+    Object? timestamp = freezed,
   }) {
     return _then(_value.copyWith(
       base: null == base
@@ -69,6 +66,10 @@ class _$ExchangeRateModelCopyWithImpl<$Res, $Val extends ExchangeRateModel>
           ? _value.rate
           : rate // ignore: cast_nullable_to_non_nullable
               as double,
+      timestamp: freezed == timestamp
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -81,7 +82,7 @@ abstract class _$$ExchangeRateModelImplCopyWith<$Res>
       __$$ExchangeRateModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String base, String target, double rate});
+  $Res call({String base, String target, double rate, int? timestamp});
 }
 
 /// @nodoc
@@ -98,6 +99,7 @@ class __$$ExchangeRateModelImplCopyWithImpl<$Res>
     Object? base = null,
     Object? target = null,
     Object? rate = null,
+    Object? timestamp = freezed,
   }) {
     return _then(_$ExchangeRateModelImpl(
       base: null == base
@@ -112,18 +114,22 @@ class __$$ExchangeRateModelImplCopyWithImpl<$Res>
           ? _value.rate
           : rate // ignore: cast_nullable_to_non_nullable
               as double,
+      timestamp: freezed == timestamp
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$ExchangeRateModelImpl implements _ExchangeRateModel {
   const _$ExchangeRateModelImpl(
-      {required this.base, required this.target, required this.rate});
-
-  factory _$ExchangeRateModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ExchangeRateModelImplFromJson(json);
+      {required this.base,
+      required this.target,
+      required this.rate,
+      this.timestamp});
 
   @override
   final String base;
@@ -131,10 +137,12 @@ class _$ExchangeRateModelImpl implements _ExchangeRateModel {
   final String target;
   @override
   final double rate;
+  @override
+  final int? timestamp;
 
   @override
   String toString() {
-    return 'ExchangeRateModel(base: $base, target: $target, rate: $rate)';
+    return 'ExchangeRateModel(base: $base, target: $target, rate: $rate, timestamp: $timestamp)';
   }
 
   @override
@@ -144,12 +152,13 @@ class _$ExchangeRateModelImpl implements _ExchangeRateModel {
             other is _$ExchangeRateModelImpl &&
             (identical(other.base, base) || other.base == base) &&
             (identical(other.target, target) || other.target == target) &&
-            (identical(other.rate, rate) || other.rate == rate));
+            (identical(other.rate, rate) || other.rate == rate) &&
+            (identical(other.timestamp, timestamp) ||
+                other.timestamp == timestamp));
   }
 
-  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, base, target, rate);
+  int get hashCode => Object.hash(runtimeType, base, target, rate, timestamp);
 
   @JsonKey(ignore: true)
   @override
@@ -157,23 +166,14 @@ class _$ExchangeRateModelImpl implements _ExchangeRateModel {
   _$$ExchangeRateModelImplCopyWith<_$ExchangeRateModelImpl> get copyWith =>
       __$$ExchangeRateModelImplCopyWithImpl<_$ExchangeRateModelImpl>(
           this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ExchangeRateModelImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _ExchangeRateModel implements ExchangeRateModel {
   const factory _ExchangeRateModel(
       {required final String base,
       required final String target,
-      required final double rate}) = _$ExchangeRateModelImpl;
-
-  factory _ExchangeRateModel.fromJson(Map<String, dynamic> json) =
-      _$ExchangeRateModelImpl.fromJson;
+      required final double rate,
+      final int? timestamp}) = _$ExchangeRateModelImpl;
 
   @override
   String get base;
@@ -181,6 +181,8 @@ abstract class _ExchangeRateModel implements ExchangeRateModel {
   String get target;
   @override
   double get rate;
+  @override
+  int? get timestamp;
   @override
   @JsonKey(ignore: true)
   _$$ExchangeRateModelImplCopyWith<_$ExchangeRateModelImpl> get copyWith =>

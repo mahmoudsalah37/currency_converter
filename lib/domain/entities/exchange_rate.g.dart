@@ -11,6 +11,7 @@ _$ExchangeRateImpl _$$ExchangeRateImplFromJson(Map<String, dynamic> json) =>
       base: json['base'] as String,
       target: json['target'] as String,
       rate: (json['rate'] as num).toDouble(),
+      timestamp: DateTime.parse(json['timestamp'] as String),
     );
 
 Map<String, dynamic> _$$ExchangeRateImplToJson(_$ExchangeRateImpl instance) =>
@@ -18,4 +19,5 @@ Map<String, dynamic> _$$ExchangeRateImplToJson(_$ExchangeRateImpl instance) =>
       'base': instance.base,
       'target': instance.target,
       'rate': instance.rate,
+      'timestamp': instance.timestamp.toIso8601String(),
     };

@@ -1,8 +1,6 @@
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'exchange_rate_model.freezed.dart';
-part 'exchange_rate_model.g.dart';
 
 @freezed
 class ExchangeRateModel with _$ExchangeRateModel {
@@ -10,7 +8,16 @@ class ExchangeRateModel with _$ExchangeRateModel {
     required String base,
     required String target,
     required double rate,
+    int? timestamp,
   }) = _ExchangeRateModel;
 
-  factory ExchangeRateModel.fromJson(Map<String, dynamic> json) => _$ExchangeRateModelFromJson(json);
+  factory ExchangeRateModel.fromJson(Map<String, dynamic> json) {
+    final timestamp = json['timestamp'] as int?;
+    return ExchangeRateModel(
+      base: json['base'] as String,
+      target: json['target'] as String,
+      rate: (json['rate'] as num).toDouble(),
+      timestamp: timestamp ?? (DateTime.now().millisecondsSinceEpoch ~/ 1000),
+    );
+  }
 }

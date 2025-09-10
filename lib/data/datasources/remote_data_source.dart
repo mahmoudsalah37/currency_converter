@@ -17,11 +17,23 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<List<CurrencyModel>> getCurrencies() async {
-    final response = await _dioClient.get('list');
-    final symbols = response.data['currencies'] as Map<String, dynamic>;
-    return symbols.entries.map((entry) {
-      return CurrencyModel(code: entry.key, name: entry.value as String);
-    }).toList();
+    try {
+      final response = await _dioClient.get('list');
+      
+      if (response.data == null || response.data['currencies'] == null) {
+        throw Exception('Invalid response format: missing currencies data');
+      }
+      
+      final symbols = response.data['currencies'] as Map<String, dynamic>;
+      return symbols.entries.map((entry) {
+        return CurrencyModel(
+          code: entry.key, 
+          name: entry.value.toString(),
+        );
+      }).toList();
+    } catch (e) {
+      throw Exception('Failed to load currencies: ${e.toString()}');
+    }
   }
 
   @override
@@ -40,15 +52,18 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       }
 
       if (response.data['success'] != true) {
-        throw Exception('API request was not successful');
+        final errorInfo = response.data['error'] is Map 
+            ? response.data['error']['info'] ?? 'Unknown error'
+            : 'API request was not successful';
+        throw Exception('API Error: $errorInfo');
       }
 
       final quotes = response.data['quotes'] as Map<String, dynamic>?;
       if (quotes == null || quotes.isEmpty) {
-        throw Exception('No exchange rate data available');
+        throw Exception('No exchange rate data available for $base to $target');
       }
 
-      final rateKey = '$base$target';
+      final rateKey = '${base}${target}';
       final rate = quotes[rateKey];
 
       if (rate == null) {
@@ -59,10 +74,10 @@ class RemoteDataSourceImpl implements RemoteDataSource {
         base: base,
         target: target,
         rate: rate.toDouble(),
+        timestamp: response.data['timestamp'] as int?,
       );
     } catch (e) {
-      print('Error in getLatestRate: $e');
-      rethrow;
+      throw Exception('Failed to fetch exchange rate: ${e.toString()}');
     }
   }
 }

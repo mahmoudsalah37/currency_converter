@@ -14,10 +14,13 @@ class AppException implements Exception {
 
 /// Exception thrown when there's an error with the API
 class ApiException extends AppException {
+  final dynamic error;
+
   const ApiException(
     super.message, {
     super.statusCode,
     super.data,
+    this.error,
   });
 
   /// Create an ApiException from a DioException
@@ -27,10 +30,13 @@ class ApiException extends AppException {
         'API error: ${error.response?.statusCode} - ${error.response?.statusMessage}',
         statusCode: error.response?.statusCode,
         data: error.response?.data,
+        error: error,
       );
     } else {
-      return const ApiException(
-          'Network error: Unable to connect to the server');
+      return ApiException(
+        'Network error: ${error.message ?? 'Unable to connect to the server'}',
+        error: error,
+      );
     }
   }
 }

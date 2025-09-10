@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:currency_converter/core/utils/logger.dart';
 import 'package:currency_converter/domain/usecases/get_latest_rate_usecase.dart';
 import 'package:currency_converter/presentation/bloc/converter/converter_event.dart';
 import 'package:currency_converter/presentation/bloc/converter/converter_state.dart';
@@ -36,15 +35,14 @@ class ConverterBloc extends Bloc<ConverterEvent, ConverterState> {
       emit(state.copyWith(isLoading: true, error: null));
 
       try {
-        AppLogger.debug(
-            'Fetching exchange rate for ${state.fromCurrency.code} to ${state.toCurrency.code}');
+        print('Fetching exchange rate for ${state.fromCurrency.code} to ${state.toCurrency.code}');
 
         final rate = await _getLatestRateUseCase(
           state.fromCurrency.code,
           state.toCurrency.code,
         );
 
-        AppLogger.debug('Successfully fetched rate: ${rate.rate}');
+        print('Successfully fetched rate: ${rate.rate}');
 
         emit(state.copyWith(
           isLoading: false,
@@ -52,7 +50,7 @@ class ConverterBloc extends Bloc<ConverterEvent, ConverterState> {
         ));
       } catch (e, stackTrace) {
         const errorMessage = 'Failed to fetch exchange rate';
-        AppLogger.error(errorMessage, e, stackTrace);
+        print('$errorMessage: $e\n$stackTrace');
         emit(state.copyWith(
           isLoading: false,
           error: '$errorMessage: ${e.toString()}',

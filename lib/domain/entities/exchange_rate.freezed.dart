@@ -23,6 +23,7 @@ mixin _$ExchangeRate {
   String get base => throw _privateConstructorUsedError;
   String get target => throw _privateConstructorUsedError;
   double get rate => throw _privateConstructorUsedError;
+  DateTime get timestamp => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +37,7 @@ abstract class $ExchangeRateCopyWith<$Res> {
           ExchangeRate value, $Res Function(ExchangeRate) then) =
       _$ExchangeRateCopyWithImpl<$Res, ExchangeRate>;
   @useResult
-  $Res call({String base, String target, double rate});
+  $Res call({String base, String target, double rate, DateTime timestamp});
 }
 
 /// @nodoc
@@ -55,6 +56,7 @@ class _$ExchangeRateCopyWithImpl<$Res, $Val extends ExchangeRate>
     Object? base = null,
     Object? target = null,
     Object? rate = null,
+    Object? timestamp = null,
   }) {
     return _then(_value.copyWith(
       base: null == base
@@ -69,6 +71,10 @@ class _$ExchangeRateCopyWithImpl<$Res, $Val extends ExchangeRate>
           ? _value.rate
           : rate // ignore: cast_nullable_to_non_nullable
               as double,
+      timestamp: null == timestamp
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 }
@@ -81,7 +87,7 @@ abstract class _$$ExchangeRateImplCopyWith<$Res>
       __$$ExchangeRateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String base, String target, double rate});
+  $Res call({String base, String target, double rate, DateTime timestamp});
 }
 
 /// @nodoc
@@ -98,6 +104,7 @@ class __$$ExchangeRateImplCopyWithImpl<$Res>
     Object? base = null,
     Object? target = null,
     Object? rate = null,
+    Object? timestamp = null,
   }) {
     return _then(_$ExchangeRateImpl(
       base: null == base
@@ -112,6 +119,10 @@ class __$$ExchangeRateImplCopyWithImpl<$Res>
           ? _value.rate
           : rate // ignore: cast_nullable_to_non_nullable
               as double,
+      timestamp: null == timestamp
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -120,7 +131,10 @@ class __$$ExchangeRateImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ExchangeRateImpl implements _ExchangeRate {
   const _$ExchangeRateImpl(
-      {required this.base, required this.target, required this.rate});
+      {required this.base,
+      required this.target,
+      required this.rate,
+      required this.timestamp});
 
   factory _$ExchangeRateImpl.fromJson(Map<String, dynamic> json) =>
       _$$ExchangeRateImplFromJson(json);
@@ -131,10 +145,12 @@ class _$ExchangeRateImpl implements _ExchangeRate {
   final String target;
   @override
   final double rate;
+  @override
+  final DateTime timestamp;
 
   @override
   String toString() {
-    return 'ExchangeRate(base: $base, target: $target, rate: $rate)';
+    return 'ExchangeRate(base: $base, target: $target, rate: $rate, timestamp: $timestamp)';
   }
 
   @override
@@ -144,12 +160,14 @@ class _$ExchangeRateImpl implements _ExchangeRate {
             other is _$ExchangeRateImpl &&
             (identical(other.base, base) || other.base == base) &&
             (identical(other.target, target) || other.target == target) &&
-            (identical(other.rate, rate) || other.rate == rate));
+            (identical(other.rate, rate) || other.rate == rate) &&
+            (identical(other.timestamp, timestamp) ||
+                other.timestamp == timestamp));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, base, target, rate);
+  int get hashCode => Object.hash(runtimeType, base, target, rate, timestamp);
 
   @JsonKey(ignore: true)
   @override
@@ -169,7 +187,8 @@ abstract class _ExchangeRate implements ExchangeRate {
   const factory _ExchangeRate(
       {required final String base,
       required final String target,
-      required final double rate}) = _$ExchangeRateImpl;
+      required final double rate,
+      required final DateTime timestamp}) = _$ExchangeRateImpl;
 
   factory _ExchangeRate.fromJson(Map<String, dynamic> json) =
       _$ExchangeRateImpl.fromJson;
@@ -180,6 +199,8 @@ abstract class _ExchangeRate implements ExchangeRate {
   String get target;
   @override
   double get rate;
+  @override
+  DateTime get timestamp;
   @override
   @JsonKey(ignore: true)
   _$$ExchangeRateImplCopyWith<_$ExchangeRateImpl> get copyWith =>

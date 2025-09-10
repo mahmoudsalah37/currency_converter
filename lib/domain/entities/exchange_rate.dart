@@ -9,7 +9,14 @@ class ExchangeRate with _$ExchangeRate {
     required String base,
     required String target,
     required double rate,
+    required DateTime timestamp,
   }) = _ExchangeRate;
 
-  factory ExchangeRate.fromJson(Map<String, dynamic> json) => _$ExchangeRateFromJson(json);
+  factory ExchangeRate.fromJson(Map<String, dynamic> json) => 
+      _$ExchangeRateFromJson({
+        ...json,
+        'timestamp': json['timestamp'] != null 
+            ? DateTime.fromMillisecondsSinceEpoch(json['timestamp'] * 1000)
+            : DateTime.now(),
+      });
 }
