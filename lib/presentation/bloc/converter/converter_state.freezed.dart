@@ -20,7 +20,6 @@ mixin _$ConverterState {
   Currency get fromCurrency => throw _privateConstructorUsedError;
   Currency get toCurrency => throw _privateConstructorUsedError;
   double get convertedAmount => throw _privateConstructorUsedError;
-  List<HistoricalData> get historicalData => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
 
@@ -40,7 +39,6 @@ abstract class $ConverterStateCopyWith<$Res> {
       Currency fromCurrency,
       Currency toCurrency,
       double convertedAmount,
-      List<HistoricalData> historicalData,
       bool isLoading,
       String? error});
 
@@ -65,7 +63,6 @@ class _$ConverterStateCopyWithImpl<$Res, $Val extends ConverterState>
     Object? fromCurrency = null,
     Object? toCurrency = null,
     Object? convertedAmount = null,
-    Object? historicalData = null,
     Object? isLoading = null,
     Object? error = freezed,
   }) {
@@ -86,10 +83,6 @@ class _$ConverterStateCopyWithImpl<$Res, $Val extends ConverterState>
           ? _value.convertedAmount
           : convertedAmount // ignore: cast_nullable_to_non_nullable
               as double,
-      historicalData: null == historicalData
-          ? _value.historicalData
-          : historicalData // ignore: cast_nullable_to_non_nullable
-              as List<HistoricalData>,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -131,7 +124,6 @@ abstract class _$$ConverterStateImplCopyWith<$Res>
       Currency fromCurrency,
       Currency toCurrency,
       double convertedAmount,
-      List<HistoricalData> historicalData,
       bool isLoading,
       String? error});
 
@@ -156,7 +148,6 @@ class __$$ConverterStateImplCopyWithImpl<$Res>
     Object? fromCurrency = null,
     Object? toCurrency = null,
     Object? convertedAmount = null,
-    Object? historicalData = null,
     Object? isLoading = null,
     Object? error = freezed,
   }) {
@@ -177,10 +168,6 @@ class __$$ConverterStateImplCopyWithImpl<$Res>
           ? _value.convertedAmount
           : convertedAmount // ignore: cast_nullable_to_non_nullable
               as double,
-      historicalData: null == historicalData
-          ? _value._historicalData
-          : historicalData // ignore: cast_nullable_to_non_nullable
-              as List<HistoricalData>,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -201,10 +188,8 @@ class _$ConverterStateImpl implements _ConverterState {
       required this.fromCurrency,
       required this.toCurrency,
       required this.convertedAmount,
-      required final List<HistoricalData> historicalData,
       required this.isLoading,
-      required this.error})
-      : _historicalData = historicalData;
+      required this.error});
 
   @override
   final double amount;
@@ -214,14 +199,6 @@ class _$ConverterStateImpl implements _ConverterState {
   final Currency toCurrency;
   @override
   final double convertedAmount;
-  final List<HistoricalData> _historicalData;
-  @override
-  List<HistoricalData> get historicalData {
-    if (_historicalData is EqualUnmodifiableListView) return _historicalData;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_historicalData);
-  }
-
   @override
   final bool isLoading;
   @override
@@ -229,7 +206,7 @@ class _$ConverterStateImpl implements _ConverterState {
 
   @override
   String toString() {
-    return 'ConverterState(amount: $amount, fromCurrency: $fromCurrency, toCurrency: $toCurrency, convertedAmount: $convertedAmount, historicalData: $historicalData, isLoading: $isLoading, error: $error)';
+    return 'ConverterState(amount: $amount, fromCurrency: $fromCurrency, toCurrency: $toCurrency, convertedAmount: $convertedAmount, isLoading: $isLoading, error: $error)';
   }
 
   @override
@@ -244,23 +221,14 @@ class _$ConverterStateImpl implements _ConverterState {
                 other.toCurrency == toCurrency) &&
             (identical(other.convertedAmount, convertedAmount) ||
                 other.convertedAmount == convertedAmount) &&
-            const DeepCollectionEquality()
-                .equals(other._historicalData, _historicalData) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      amount,
-      fromCurrency,
-      toCurrency,
-      convertedAmount,
-      const DeepCollectionEquality().hash(_historicalData),
-      isLoading,
-      error);
+  int get hashCode => Object.hash(runtimeType, amount, fromCurrency, toCurrency,
+      convertedAmount, isLoading, error);
 
   @JsonKey(ignore: true)
   @override
@@ -276,7 +244,6 @@ abstract class _ConverterState implements ConverterState {
       required final Currency fromCurrency,
       required final Currency toCurrency,
       required final double convertedAmount,
-      required final List<HistoricalData> historicalData,
       required final bool isLoading,
       required final String? error}) = _$ConverterStateImpl;
 
@@ -288,8 +255,6 @@ abstract class _ConverterState implements ConverterState {
   Currency get toCurrency;
   @override
   double get convertedAmount;
-  @override
-  List<HistoricalData> get historicalData;
   @override
   bool get isLoading;
   @override

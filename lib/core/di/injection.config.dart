@@ -17,15 +17,14 @@ import '../../data/datasources/remote_data_source.dart' as _i8;
 import '../../data/repositories/currency_repository_impl.dart' as _i10;
 import '../../domain/repositories/currency_repository.dart' as _i9;
 import '../../domain/usecases/get_currencies_usecase.dart' as _i11;
-import '../../domain/usecases/get_historical_data_usecase.dart' as _i12;
-import '../../domain/usecases/get_latest_rate_usecase.dart' as _i13;
-import '../../presentation/bloc/converter/converter_bloc.dart' as _i15;
-import '../../presentation/bloc/currency_list/currency_list_bloc.dart' as _i16;
-import '../../presentation/bloc/splash/splash_bloc.dart' as _i14;
+import '../../domain/usecases/get_latest_rate_usecase.dart' as _i12;
+import '../../presentation/bloc/converter/converter_bloc.dart' as _i14;
+import '../../presentation/bloc/currency_list/currency_list_bloc.dart' as _i15;
+import '../../presentation/bloc/splash/splash_bloc.dart' as _i13;
 import '../db/hive_service.dart' as _i6;
 import '../network/dio_client.dart' as _i5;
 import '../router/app_router.dart' as _i3;
-import 'injection.dart' as _i17;
+import 'injection.dart' as _i16;
 
 // initializes the registration of main-scope dependencies inside of GetIt
 _i1.GetIt $initGetIt(
@@ -55,20 +54,15 @@ _i1.GetIt $initGetIt(
           ));
   gh.factoryAsync<_i11.GetCurrenciesUseCase>(() async =>
       _i11.GetCurrenciesUseCase(await gh.getAsync<_i9.CurrencyRepository>()));
-  gh.factoryAsync<_i12.GetHistoricalDataUseCase>(() async =>
-      _i12.GetHistoricalDataUseCase(
-          await gh.getAsync<_i9.CurrencyRepository>()));
-  gh.factoryAsync<_i13.GetLatestRateUseCase>(() async =>
-      _i13.GetLatestRateUseCase(await gh.getAsync<_i9.CurrencyRepository>()));
-  gh.factoryAsync<_i14.SplashBloc>(() async =>
-      _i14.SplashBloc(await gh.getAsync<_i11.GetCurrenciesUseCase>()));
-  gh.factoryAsync<_i15.ConverterBloc>(() async => _i15.ConverterBloc(
-        await gh.getAsync<_i13.GetLatestRateUseCase>(),
-        await gh.getAsync<_i12.GetHistoricalDataUseCase>(),
-      ));
-  gh.factoryAsync<_i16.CurrencyListBloc>(() async =>
-      _i16.CurrencyListBloc(await gh.getAsync<_i11.GetCurrenciesUseCase>()));
+  gh.factoryAsync<_i12.GetLatestRateUseCase>(() async =>
+      _i12.GetLatestRateUseCase(await gh.getAsync<_i9.CurrencyRepository>()));
+  gh.factoryAsync<_i13.SplashBloc>(() async =>
+      _i13.SplashBloc(await gh.getAsync<_i11.GetCurrenciesUseCase>()));
+  gh.factoryAsync<_i14.ConverterBloc>(() async =>
+      _i14.ConverterBloc(await gh.getAsync<_i12.GetLatestRateUseCase>()));
+  gh.factoryAsync<_i15.CurrencyListBloc>(() async =>
+      _i15.CurrencyListBloc(await gh.getAsync<_i11.GetCurrenciesUseCase>()));
   return getIt;
 }
 
-class _$ConnectivityModule extends _i17.ConnectivityModule {}
+class _$ConnectivityModule extends _i16.ConnectivityModule {}

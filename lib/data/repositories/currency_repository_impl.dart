@@ -3,10 +3,8 @@ import 'package:currency_converter/data/datasources/local_data_source.dart';
 import 'package:currency_converter/data/datasources/remote_data_source.dart';
 import 'package:currency_converter/data/mappers/currency_mapper.dart';
 import 'package:currency_converter/data/mappers/exchange_rate_mapper.dart';
-import 'package:currency_converter/data/mappers/historical_data_mapper.dart';
 import 'package:currency_converter/domain/entities/currency.dart';
 import 'package:currency_converter/domain/entities/exchange_rate.dart';
-import 'package:currency_converter/domain/entities/historical_data.dart';
 import 'package:currency_converter/domain/repositories/currency_repository.dart';
 import 'package:injectable/injectable.dart';
 
@@ -16,7 +14,8 @@ class CurrencyRepositoryImpl implements CurrencyRepository {
   final LocalDataSource _localDataSource;
   final Connectivity _connectivity;
 
-  CurrencyRepositoryImpl(this._remoteDataSource, this._localDataSource, this._connectivity);
+  CurrencyRepositoryImpl(
+      this._remoteDataSource, this._localDataSource, this._connectivity);
 
   @override
   Future<List<Currency>> getCurrencies() async {
@@ -46,16 +45,5 @@ class CurrencyRepositoryImpl implements CurrencyRepository {
   Future<ExchangeRate> getLatestRate(String base, String target) async {
     final model = await _remoteDataSource.getLatestRate(base, target);
     return model.toEntity();
-  }
-
-  @override
-  Future<List<HistoricalData>> getHistoricalData(
-    String startDate,
-    String endDate,
-    String base,
-    String target,
-  ) async {
-    final models = await _remoteDataSource.getHistoricalData(startDate, endDate, base, target);
-    return models.map((m) => m.toEntity()).toList();
   }
 }

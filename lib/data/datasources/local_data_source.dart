@@ -28,7 +28,8 @@ class LocalDataSourceImpl implements LocalDataSource {
 
   @override
   Future<void> saveCurrencies(List<Currency> currencies) async {
-    final hiveModels = currencies.map((e) => CurrencyHiveModel.fromEntity(e)).toList();
+    final hiveModels =
+        currencies.map((e) => CurrencyHiveModel.fromEntity(e)).toList();
     await _hiveService.saveCurrencies(hiveModels);
   }
 

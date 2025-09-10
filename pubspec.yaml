@@ -47,6 +47,9 @@ dependencies:
   # JSON
   json_annotation: ^4.8.1
   bloc: ^8.1.4
+  
+  # Logging
+  logging: ^1.2.0
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,4 @@
 import 'package:currency_converter/domain/entities/currency.dart';
-import 'package:currency_converter/domain/entities/historical_data.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'converter_state.freezed.dart';
@@ -11,7 +10,6 @@ class ConverterState with _$ConverterState {
     required Currency fromCurrency,
     required Currency toCurrency,
     required double convertedAmount,
-    required List<HistoricalData> historicalData,
     required bool isLoading,
     required String? error,
   }) = _ConverterState;
@@ -21,7 +19,6 @@ class ConverterState with _$ConverterState {
         fromCurrency: Currency(code: 'USD', name: 'US Dollar'),
         toCurrency: Currency(code: 'EUR', name: 'Euro'),
         convertedAmount: 0.0,
-        historicalData: [],
         isLoading: false,
         error: null,
       );

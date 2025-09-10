@@ -23,7 +23,6 @@ mixin _$ConverterEvent {
     required TResult Function(Currency currency) toCurrencyChanged,
     required TResult Function() swapCurrencies,
     required TResult Function() fetchRate,
-    required TResult Function() fetchHistoricalData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -33,7 +32,6 @@ mixin _$ConverterEvent {
     TResult? Function(Currency currency)? toCurrencyChanged,
     TResult? Function()? swapCurrencies,
     TResult? Function()? fetchRate,
-    TResult? Function()? fetchHistoricalData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,7 +41,6 @@ mixin _$ConverterEvent {
     TResult Function(Currency currency)? toCurrencyChanged,
     TResult Function()? swapCurrencies,
     TResult Function()? fetchRate,
-    TResult Function()? fetchHistoricalData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -54,7 +51,6 @@ mixin _$ConverterEvent {
     required TResult Function(ToCurrencyChanged value) toCurrencyChanged,
     required TResult Function(SwapCurrencies value) swapCurrencies,
     required TResult Function(FetchRate value) fetchRate,
-    required TResult Function(FetchHistoricalData value) fetchHistoricalData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -64,7 +60,6 @@ mixin _$ConverterEvent {
     TResult? Function(ToCurrencyChanged value)? toCurrencyChanged,
     TResult? Function(SwapCurrencies value)? swapCurrencies,
     TResult? Function(FetchRate value)? fetchRate,
-    TResult? Function(FetchHistoricalData value)? fetchHistoricalData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -74,7 +69,6 @@ mixin _$ConverterEvent {
     TResult Function(ToCurrencyChanged value)? toCurrencyChanged,
     TResult Function(SwapCurrencies value)? swapCurrencies,
     TResult Function(FetchRate value)? fetchRate,
-    TResult Function(FetchHistoricalData value)? fetchHistoricalData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -167,7 +161,6 @@ class _$AmountChangedImpl implements AmountChanged {
     required TResult Function(Currency currency) toCurrencyChanged,
     required TResult Function() swapCurrencies,
     required TResult Function() fetchRate,
-    required TResult Function() fetchHistoricalData,
   }) {
     return amountChanged(amount);
   }
@@ -180,7 +173,6 @@ class _$AmountChangedImpl implements AmountChanged {
     TResult? Function(Currency currency)? toCurrencyChanged,
     TResult? Function()? swapCurrencies,
     TResult? Function()? fetchRate,
-    TResult? Function()? fetchHistoricalData,
   }) {
     return amountChanged?.call(amount);
   }
@@ -193,7 +185,6 @@ class _$AmountChangedImpl implements AmountChanged {
     TResult Function(Currency currency)? toCurrencyChanged,
     TResult Function()? swapCurrencies,
     TResult Function()? fetchRate,
-    TResult Function()? fetchHistoricalData,
     required TResult orElse(),
   }) {
     if (amountChanged != null) {
@@ -210,7 +201,6 @@ class _$AmountChangedImpl implements AmountChanged {
     required TResult Function(ToCurrencyChanged value) toCurrencyChanged,
     required TResult Function(SwapCurrencies value) swapCurrencies,
     required TResult Function(FetchRate value) fetchRate,
-    required TResult Function(FetchHistoricalData value) fetchHistoricalData,
   }) {
     return amountChanged(this);
   }
@@ -223,7 +213,6 @@ class _$AmountChangedImpl implements AmountChanged {
     TResult? Function(ToCurrencyChanged value)? toCurrencyChanged,
     TResult? Function(SwapCurrencies value)? swapCurrencies,
     TResult? Function(FetchRate value)? fetchRate,
-    TResult? Function(FetchHistoricalData value)? fetchHistoricalData,
   }) {
     return amountChanged?.call(this);
   }
@@ -236,7 +225,6 @@ class _$AmountChangedImpl implements AmountChanged {
     TResult Function(ToCurrencyChanged value)? toCurrencyChanged,
     TResult Function(SwapCurrencies value)? swapCurrencies,
     TResult Function(FetchRate value)? fetchRate,
-    TResult Function(FetchHistoricalData value)? fetchHistoricalData,
     required TResult orElse(),
   }) {
     if (amountChanged != null) {
@@ -336,7 +324,6 @@ class _$FromCurrencyChangedImpl implements FromCurrencyChanged {
     required TResult Function(Currency currency) toCurrencyChanged,
     required TResult Function() swapCurrencies,
     required TResult Function() fetchRate,
-    required TResult Function() fetchHistoricalData,
   }) {
     return fromCurrencyChanged(currency);
   }
@@ -349,7 +336,6 @@ class _$FromCurrencyChangedImpl implements FromCurrencyChanged {
     TResult? Function(Currency currency)? toCurrencyChanged,
     TResult? Function()? swapCurrencies,
     TResult? Function()? fetchRate,
-    TResult? Function()? fetchHistoricalData,
   }) {
     return fromCurrencyChanged?.call(currency);
   }
@@ -362,7 +348,6 @@ class _$FromCurrencyChangedImpl implements FromCurrencyChanged {
     TResult Function(Currency currency)? toCurrencyChanged,
     TResult Function()? swapCurrencies,
     TResult Function()? fetchRate,
-    TResult Function()? fetchHistoricalData,
     required TResult orElse(),
   }) {
     if (fromCurrencyChanged != null) {
@@ -379,7 +364,6 @@ class _$FromCurrencyChangedImpl implements FromCurrencyChanged {
     required TResult Function(ToCurrencyChanged value) toCurrencyChanged,
     required TResult Function(SwapCurrencies value) swapCurrencies,
     required TResult Function(FetchRate value) fetchRate,
-    required TResult Function(FetchHistoricalData value) fetchHistoricalData,
   }) {
     return fromCurrencyChanged(this);
   }
@@ -392,7 +376,6 @@ class _$FromCurrencyChangedImpl implements FromCurrencyChanged {
     TResult? Function(ToCurrencyChanged value)? toCurrencyChanged,
     TResult? Function(SwapCurrencies value)? swapCurrencies,
     TResult? Function(FetchRate value)? fetchRate,
-    TResult? Function(FetchHistoricalData value)? fetchHistoricalData,
   }) {
     return fromCurrencyChanged?.call(this);
   }
@@ -405,7 +388,6 @@ class _$FromCurrencyChangedImpl implements FromCurrencyChanged {
     TResult Function(ToCurrencyChanged value)? toCurrencyChanged,
     TResult Function(SwapCurrencies value)? swapCurrencies,
     TResult Function(FetchRate value)? fetchRate,
-    TResult Function(FetchHistoricalData value)? fetchHistoricalData,
     required TResult orElse(),
   }) {
     if (fromCurrencyChanged != null) {
@@ -506,7 +488,6 @@ class _$ToCurrencyChangedImpl implements ToCurrencyChanged {
     required TResult Function(Currency currency) toCurrencyChanged,
     required TResult Function() swapCurrencies,
     required TResult Function() fetchRate,
-    required TResult Function() fetchHistoricalData,
   }) {
     return toCurrencyChanged(currency);
   }
@@ -519,7 +500,6 @@ class _$ToCurrencyChangedImpl implements ToCurrencyChanged {
     TResult? Function(Currency currency)? toCurrencyChanged,
     TResult? Function()? swapCurrencies,
     TResult? Function()? fetchRate,
-    TResult? Function()? fetchHistoricalData,
   }) {
     return toCurrencyChanged?.call(currency);
   }
@@ -532,7 +512,6 @@ class _$ToCurrencyChangedImpl implements ToCurrencyChanged {
     TResult Function(Currency currency)? toCurrencyChanged,
     TResult Function()? swapCurrencies,
     TResult Function()? fetchRate,
-    TResult Function()? fetchHistoricalData,
     required TResult orElse(),
   }) {
     if (toCurrencyChanged != null) {
@@ -549,7 +528,6 @@ class _$ToCurrencyChangedImpl implements ToCurrencyChanged {
     required TResult Function(ToCurrencyChanged value) toCurrencyChanged,
     required TResult Function(SwapCurrencies value) swapCurrencies,
     required TResult Function(FetchRate value) fetchRate,
-    required TResult Function(FetchHistoricalData value) fetchHistoricalData,
   }) {
     return toCurrencyChanged(this);
   }
@@ -562,7 +540,6 @@ class _$ToCurrencyChangedImpl implements ToCurrencyChanged {
     TResult? Function(ToCurrencyChanged value)? toCurrencyChanged,
     TResult? Function(SwapCurrencies value)? swapCurrencies,
     TResult? Function(FetchRate value)? fetchRate,
-    TResult? Function(FetchHistoricalData value)? fetchHistoricalData,
   }) {
     return toCurrencyChanged?.call(this);
   }
@@ -575,7 +552,6 @@ class _$ToCurrencyChangedImpl implements ToCurrencyChanged {
     TResult Function(ToCurrencyChanged value)? toCurrencyChanged,
     TResult Function(SwapCurrencies value)? swapCurrencies,
     TResult Function(FetchRate value)? fetchRate,
-    TResult Function(FetchHistoricalData value)? fetchHistoricalData,
     required TResult orElse(),
   }) {
     if (toCurrencyChanged != null) {
@@ -638,7 +614,6 @@ class _$SwapCurrenciesImpl implements SwapCurrencies {
     required TResult Function(Currency currency) toCurrencyChanged,
     required TResult Function() swapCurrencies,
     required TResult Function() fetchRate,
-    required TResult Function() fetchHistoricalData,
   }) {
     return swapCurrencies();
   }
@@ -651,7 +626,6 @@ class _$SwapCurrenciesImpl implements SwapCurrencies {
     TResult? Function(Currency currency)? toCurrencyChanged,
     TResult? Function()? swapCurrencies,
     TResult? Function()? fetchRate,
-    TResult? Function()? fetchHistoricalData,
   }) {
     return swapCurrencies?.call();
   }
@@ -664,7 +638,6 @@ class _$SwapCurrenciesImpl implements SwapCurrencies {
     TResult Function(Currency currency)? toCurrencyChanged,
     TResult Function()? swapCurrencies,
     TResult Function()? fetchRate,
-    TResult Function()? fetchHistoricalData,
     required TResult orElse(),
   }) {
     if (swapCurrencies != null) {
@@ -681,7 +654,6 @@ class _$SwapCurrenciesImpl implements SwapCurrencies {
     required TResult Function(ToCurrencyChanged value) toCurrencyChanged,
     required TResult Function(SwapCurrencies value) swapCurrencies,
     required TResult Function(FetchRate value) fetchRate,
-    required TResult Function(FetchHistoricalData value) fetchHistoricalData,
   }) {
     return swapCurrencies(this);
   }
@@ -694,7 +666,6 @@ class _$SwapCurrenciesImpl implements SwapCurrencies {
     TResult? Function(ToCurrencyChanged value)? toCurrencyChanged,
     TResult? Function(SwapCurrencies value)? swapCurrencies,
     TResult? Function(FetchRate value)? fetchRate,
-    TResult? Function(FetchHistoricalData value)? fetchHistoricalData,
   }) {
     return swapCurrencies?.call(this);
   }
@@ -707,7 +678,6 @@ class _$SwapCurrenciesImpl implements SwapCurrencies {
     TResult Function(ToCurrencyChanged value)? toCurrencyChanged,
     TResult Function(SwapCurrencies value)? swapCurrencies,
     TResult Function(FetchRate value)? fetchRate,
-    TResult Function(FetchHistoricalData value)? fetchHistoricalData,
     required TResult orElse(),
   }) {
     if (swapCurrencies != null) {
@@ -764,7 +734,6 @@ class _$FetchRateImpl implements FetchRate {
     required TResult Function(Currency currency) toCurrencyChanged,
     required TResult Function() swapCurrencies,
     required TResult Function() fetchRate,
-    required TResult Function() fetchHistoricalData,
   }) {
     return fetchRate();
   }
@@ -777,7 +746,6 @@ class _$FetchRateImpl implements FetchRate {
     TResult? Function(Currency currency)? toCurrencyChanged,
     TResult? Function()? swapCurrencies,
     TResult? Function()? fetchRate,
-    TResult? Function()? fetchHistoricalData,
   }) {
     return fetchRate?.call();
   }
@@ -790,7 +758,6 @@ class _$FetchRateImpl implements FetchRate {
     TResult Function(Currency currency)? toCurrencyChanged,
     TResult Function()? swapCurrencies,
     TResult Function()? fetchRate,
-    TResult Function()? fetchHistoricalData,
     required TResult orElse(),
   }) {
     if (fetchRate != null) {
@@ -807,7 +774,6 @@ class _$FetchRateImpl implements FetchRate {
     required TResult Function(ToCurrencyChanged value) toCurrencyChanged,
     required TResult Function(SwapCurrencies value) swapCurrencies,
     required TResult Function(FetchRate value) fetchRate,
-    required TResult Function(FetchHistoricalData value) fetchHistoricalData,
   }) {
     return fetchRate(this);
   }
@@ -820,7 +786,6 @@ class _$FetchRateImpl implements FetchRate {
     TResult? Function(ToCurrencyChanged value)? toCurrencyChanged,
     TResult? Function(SwapCurrencies value)? swapCurrencies,
     TResult? Function(FetchRate value)? fetchRate,
-    TResult? Function(FetchHistoricalData value)? fetchHistoricalData,
   }) {
     return fetchRate?.call(this);
   }
@@ -833,7 +798,6 @@ class _$FetchRateImpl implements FetchRate {
     TResult Function(ToCurrencyChanged value)? toCurrencyChanged,
     TResult Function(SwapCurrencies value)? swapCurrencies,
     TResult Function(FetchRate value)? fetchRate,
-    TResult Function(FetchHistoricalData value)? fetchHistoricalData,
     required TResult orElse(),
   }) {
     if (fetchRate != null) {
@@ -845,131 +809,4 @@ class _$FetchRateImpl implements FetchRate {
 
 abstract class FetchRate implements ConverterEvent {
   const factory FetchRate() = _$FetchRateImpl;
-}
-
-/// @nodoc
-abstract class _$$FetchHistoricalDataImplCopyWith<$Res> {
-  factory _$$FetchHistoricalDataImplCopyWith(_$FetchHistoricalDataImpl value,
-          $Res Function(_$FetchHistoricalDataImpl) then) =
-      __$$FetchHistoricalDataImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$FetchHistoricalDataImplCopyWithImpl<$Res>
-    extends _$ConverterEventCopyWithImpl<$Res, _$FetchHistoricalDataImpl>
-    implements _$$FetchHistoricalDataImplCopyWith<$Res> {
-  __$$FetchHistoricalDataImplCopyWithImpl(_$FetchHistoricalDataImpl _value,
-      $Res Function(_$FetchHistoricalDataImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$FetchHistoricalDataImpl implements FetchHistoricalData {
-  const _$FetchHistoricalDataImpl();
-
-  @override
-  String toString() {
-    return 'ConverterEvent.fetchHistoricalData()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FetchHistoricalDataImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String amount) amountChanged,
-    required TResult Function(Currency currency) fromCurrencyChanged,
-    required TResult Function(Currency currency) toCurrencyChanged,
-    required TResult Function() swapCurrencies,
-    required TResult Function() fetchRate,
-    required TResult Function() fetchHistoricalData,
-  }) {
-    return fetchHistoricalData();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String amount)? amountChanged,
-    TResult? Function(Currency currency)? fromCurrencyChanged,
-    TResult? Function(Currency currency)? toCurrencyChanged,
-    TResult? Function()? swapCurrencies,
-    TResult? Function()? fetchRate,
-    TResult? Function()? fetchHistoricalData,
-  }) {
-    return fetchHistoricalData?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String amount)? amountChanged,
-    TResult Function(Currency currency)? fromCurrencyChanged,
-    TResult Function(Currency currency)? toCurrencyChanged,
-    TResult Function()? swapCurrencies,
-    TResult Function()? fetchRate,
-    TResult Function()? fetchHistoricalData,
-    required TResult orElse(),
-  }) {
-    if (fetchHistoricalData != null) {
-      return fetchHistoricalData();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(AmountChanged value) amountChanged,
-    required TResult Function(FromCurrencyChanged value) fromCurrencyChanged,
-    required TResult Function(ToCurrencyChanged value) toCurrencyChanged,
-    required TResult Function(SwapCurrencies value) swapCurrencies,
-    required TResult Function(FetchRate value) fetchRate,
-    required TResult Function(FetchHistoricalData value) fetchHistoricalData,
-  }) {
-    return fetchHistoricalData(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AmountChanged value)? amountChanged,
-    TResult? Function(FromCurrencyChanged value)? fromCurrencyChanged,
-    TResult? Function(ToCurrencyChanged value)? toCurrencyChanged,
-    TResult? Function(SwapCurrencies value)? swapCurrencies,
-    TResult? Function(FetchRate value)? fetchRate,
-    TResult? Function(FetchHistoricalData value)? fetchHistoricalData,
-  }) {
-    return fetchHistoricalData?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(AmountChanged value)? amountChanged,
-    TResult Function(FromCurrencyChanged value)? fromCurrencyChanged,
-    TResult Function(ToCurrencyChanged value)? toCurrencyChanged,
-    TResult Function(SwapCurrencies value)? swapCurrencies,
-    TResult Function(FetchRate value)? fetchRate,
-    TResult Function(FetchHistoricalData value)? fetchHistoricalData,
-    required TResult orElse(),
-  }) {
-    if (fetchHistoricalData != null) {
-      return fetchHistoricalData(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class FetchHistoricalData implements ConverterEvent {
-  const factory FetchHistoricalData() = _$FetchHistoricalDataImpl;
 }

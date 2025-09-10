@@ -44,5 +44,7 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# API key
-lib/core/network/api_config.dart
+
+
+# FVM Version Cache
+.fvm/
