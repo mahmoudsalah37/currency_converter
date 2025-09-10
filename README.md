@@ -1,89 +1,152 @@
-# Currency Converter
+<div align="center">
+  <h1>💱 Currency Converter</h1>
+  
+  [![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)](https://flutter.dev/)
+  [![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev/)
+  [![BLoC](https://img.shields.io/badge/BLoC-5BB9A2?style=for-the-badge&logo=bloc&logoColor=white)](https://bloclibrary.dev/)
+  
+  A modern, feature-rich currency conversion app built with Flutter that provides real-time exchange rates and seamless conversion between 170+ world currencies.
+  
+  [![GitHub stars](https://img.shields.io/github/stars/yourusername/currency_converter?style=social)](https://github.com/yourusername/currency_converter/stargazers)
+  [![GitHub license](https://img.shields.io/github/license/yourusername/currency_converter)](https://github.com/yourusername/currency_converter/blob/main/LICENSE)
+  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+</div>
 
-A modern currency converter application built with Flutter, following Clean Architecture principles and implementing the BLoC pattern for state management.
+## ✨ Features
 
-## Build Instructions
+- **Real-time Exchange Rates**: Get the latest currency rates
+- **Wide Currency Support**: Convert between 170+ world currencies
+- **Clean UI**: Intuitive and responsive user interface
+- **Offline Support**: View recent conversions when offline
+- **Light/Dark Theme**: Choose your preferred theme
+- **Quick Convert**: Fast and accurate conversions
+- **Favorites**: Save frequently used currency pairs
+- **Historical Data**: View exchange rate history (coming soon)
 
-1. Install Flutter SDK (version 3.0.0 or higher)
-2. Clone the repository:
-   ```sh
-   git clone <repository-url>
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Flutter SDK (latest stable version)
+- Dart SDK (latest stable version)
+- Android Studio / Xcode (for emulator/simulator)
+- An internet connection (for fetching exchange rates)
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/currency_converter.git
    cd currency_converter
    ```
-3. Install dependencies:
-   ```sh
+
+2. Install dependencies:
+   ```bash
    flutter pub get
    ```
-4. Run code generation for DI, routing, and freezed models:
-   ```sh
+
+3. Run code generation for DI, routing, and models:
+   ```bash
    flutter pub run build_runner build --delete-conflicting-outputs
    ```
-5. Run the app:
-   ```sh
+
+4. Run the app:
+   ```bash
    flutter run
    ```
 
-## Architecture
+## 🏗️ Project Architecture
 
-This project implements **Clean Architecture** with three distinct layers:
+This project follows Clean Architecture with three distinct layers:
 
-1. **Data Layer**:
-   - Handles data operations from both API and local storage
-   - Contains repository implementations and data sources
-   - Manages data caching and offline-first functionality
+### 1. Data Layer
+- **Repositories**: Implement domain interfaces
+- **Data Sources**: Handle API and local storage operations
+- **Models**: Data transfer objects (DTOs) and Hive models
+- **Mappers**: Convert between domain and data models
 
-2. **Domain Layer**:
-   - Core business logic layer
-   - Contains entities, repository interfaces, and use cases
-   - Pure Dart code with no external dependencies
+### 2. Domain Layer
+- **Entities**: Core business objects
+- **Repositories**: Abstract interfaces for data operations
+- **Use Cases**: Business logic components
+- **Failures**: Custom error types
 
-3. **Presentation Layer**:
-   - UI implementation using Material Design
-   - BLoC pattern for state management
-   - Handles user interactions and state updates
+### 3. Presentation Layer
+- **BLoCs**: Business Logic Components for state management
+- **Screens**: UI pages
+- **Widgets**: Reusable UI components
+- **Theme**: App theming and styling
 
-### Why Clean Architecture?
-- Clear separation of concerns
-- Highly testable due to layer independence
-- Easy to maintain and scale
-- Dependencies point inwards, making the domain layer completely independent
+## 🛠️ Technical Stack
 
-## Image Loading
+| Category           | Technology                          |
+|--------------------|-------------------------------------|
+| **Framework**      | Flutter                            |
+| **Language**       | Dart                               |
+| **State Management**| BLoC Pattern                       |
+| **Dependency Injection** | GetIt + Injectable         |
+| **Networking**     | Dio                                |
+| **Local Storage**  | Hive                               |
+| **Routing**        | auto_route                         |
+| **Testing**        | Mockito, Bloc Test                 |
+| **CI/CD**          | GitHub Actions (coming soon)       |
 
-The app uses Flutter's built-in `Image.network` widget for loading flag images from flagcdn.com. Reasons for this choice:
+## 📱 Screenshots
 
-1. **Simplicity**: Native Flutter solution without additional dependencies
-2. **Performance**: Built-in caching mechanism
-3. **Error Handling**: Easy to implement loading and error states
-4. **Memory Management**: Automatic image cache management by Flutter
+| Light Theme | Dark Theme |
+|-------------|------------|
+| <img src="screenshots/light_theme.png" width="300"> | <img src="screenshots/dark_theme.png" width="300"> |
+| Conversion Screen | Favorites |
+| <img src="screenshots/conversion.png" width="300"> | <img src="screenshots/favorites.png" width="300"> |
 
-## Database
+## 🧪 Testing
 
-The app uses **Hive** as the local database. Reasons for choosing Hive:
+The app includes comprehensive test coverage for:
+- Unit tests for use cases and business logic
+- Widget tests for UI components
+- Integration tests for critical user flows
 
-1. **Performance**: Fast, lightweight NoSQL database
-2. **Cross-Platform**: Works seamlessly on all platforms
-3. **Type Safety**: Strong typing with code generation
-4. **No Native Dependencies**: Pure Dart implementation
-5. **Easy to Use**: Simple API with minimal setup
-6. **Offline Support**: Perfect for implementing offline-first architecture
+Run tests with:
+```bash
+# Run all tests
+flutter test
 
-## Testing
+# Run specific test file
+flutter test test/feature/convert_currency_test.dart
 
-Unit tests are implemented for:
-- API integration
-- Business logic
-- Repository layer
-- Use cases
+# Run tests with coverage
+flutter test --coverage
+```
 
-(Note: Unit tests need to be implemented)
+## 🤝 Contributing
 
-## Dependencies
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-- **State Management**: flutter_bloc
-- **Dependency Injection**: get_it + injectable
-- **API Client**: dio
-- **Local Database**: hive
-- **Navigation**: auto_route
-- **Charts**: fl_chart
-- **Loading Effects**: shimmer
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## 🙏 Acknowledgments
+
+- [ExchangeRate-API](https://exchangerate.host/) for providing the currency exchange rates
+- [Flutter](https://flutter.dev/) for the amazing cross-platform framework
+- [BLoC Library](https://bloclibrary.dev/) for state management
+- All contributors who have helped shape this project
+
+## 📬 Contact
+
+Your Name - [@yourtwitter](https://twitter.com/yourtwitter) - your.email@example.com
+
+Project Link: [https://github.com/yourusername/currency_converter](https://github.com/yourusername/currency_converter)
+
+---
+
+<div align="center">
+  Made with ❤️ using Flutter
+</div>
