@@ -63,7 +63,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
         throw Exception('No exchange rate data available for $base to $target');
       }
 
-      final rateKey = '${base}${target}';
+      final rateKey = '$base$target';
       final rate = quotes[rateKey];
 
       if (rate == null) {

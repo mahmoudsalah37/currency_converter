@@ -25,8 +25,8 @@ ExchangeRate _createMockExchangeRate(String base, String target) {
 void main() {
   late GetLatestRateUseCase useCase;
   late MockCurrencyRepository mockRepository;
-  final tBase = 'USD';
-  final tTarget = 'EUR';
+  const tBase = 'USD';
+  const tTarget = 'EUR';
   
   setUp(() {
     mockRepository = MockCurrencyRepository();

@@ -61,7 +61,7 @@ class HiveService {
   
   Future<ExchangeRateHiveModel?> getExchangeRate(String base, String target) async {
     final box = await _exchangeRateBoxInstance;
-    final cacheKey = '${base}_${target}';
+    final cacheKey = '${base}_$target';
     final rate = box.get(cacheKey);
     
     if (rate != null) {

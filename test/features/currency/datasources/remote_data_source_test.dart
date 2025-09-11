@@ -106,7 +106,7 @@ void main() {
       'timestamp': DateTime.now().millisecondsSinceEpoch ~/ 1000,
       'source': tBase,
       'quotes': {
-        '${tBase}${tTarget}': tRate,
+        '$tBase$tTarget': tRate,
       },
     };
 
