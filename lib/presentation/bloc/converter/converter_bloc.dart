@@ -35,22 +35,17 @@ class ConverterBloc extends Bloc<ConverterEvent, ConverterState> {
       emit(state.copyWith(isLoading: true, error: null));
 
       try {
-        print('Fetching exchange rate for ${state.fromCurrency.code} to ${state.toCurrency.code}');
-
         final rate = await _getLatestRateUseCase(
           state.fromCurrency.code,
           state.toCurrency.code,
         );
 
-        print('Successfully fetched rate: ${rate.rate}');
-
         emit(state.copyWith(
           isLoading: false,
           convertedAmount: state.amount * rate.rate,
         ));
-      } catch (e, stackTrace) {
+      } catch (e, _) {
         const errorMessage = 'Failed to fetch exchange rate';
-        print('$errorMessage: $e\n$stackTrace');
         emit(state.copyWith(
           isLoading: false,
           error: '$errorMessage: ${e.toString()}',
