@@ -10,13 +10,15 @@ class SwapButton extends StatefulWidget {
   State<SwapButton> createState() => _SwapButtonState();
 }
 
-class _SwapButtonState extends State<SwapButton> with SingleTickerProviderStateMixin {
+class _SwapButtonState extends State<SwapButton>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 300));
+    _controller = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 300));
   }
 
   @override
@@ -36,13 +38,17 @@ class _SwapButtonState extends State<SwapButton> with SingleTickerProviderStateM
       onTap: _handleTap,
       child: Animate(
         controller: _controller,
-        effects: const [RotateEffect(duration: Duration(milliseconds: 300), curve: Curves.easeInOut)],
+        effects: const [
+          RotateEffect(
+              duration: Duration(milliseconds: 300), curve: Curves.easeInOut)
+        ],
         child: Container(
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: Colors.white.withOpacity(0.2),
-            border: Border.all(color: Colors.white.withOpacity(0.3), width: 2),
+            color: Colors.white.withValues(alpha: 0.2),
+            border: Border.all(
+                color: Colors.white.withValues(alpha: 0.3), width: 2),
           ),
           child: const Icon(Icons.swap_vert, color: Colors.white, size: 32),
         ),

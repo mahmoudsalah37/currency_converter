@@ -10,7 +10,9 @@ class HistoricalChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (data.isEmpty) {
-      return const Center(child: Text('No historical data available', style: TextStyle(color: Colors.white70)));
+      return const Center(
+          child: Text('No historical data available',
+              style: TextStyle(color: Colors.white70)));
     }
 
     final spots = data.asMap().entries.map((entry) {
@@ -32,7 +34,7 @@ class HistoricalChart extends StatelessWidget {
             dotData: const FlDotData(show: false),
             belowBarData: BarAreaData(
               show: true,
-              color: Colors.white.withOpacity(0.1),
+              color: Colors.white.withValues(alpha: 0.1),
             ),
           ),
         ],

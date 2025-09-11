@@ -59,7 +59,8 @@ class ConverterScreen extends StatelessWidget {
                                       onTap: () async {
                                         final selected = await context.router
                                             .push(const CurrencyListRoute());
-                                        if (selected is Currency) {
+                                        if (selected is Currency &&
+                                            context.mounted) {
                                           context.read<ConverterBloc>().add(
                                               FromCurrencyChanged(selected));
                                         }
@@ -102,7 +103,8 @@ class ConverterScreen extends StatelessWidget {
                                       onTap: () async {
                                         final selected = await context.router
                                             .push(const CurrencyListRoute());
-                                        if (selected is Currency) {
+                                        if (selected is Currency &&
+                                            context.mounted) {
                                           context
                                               .read<ConverterBloc>()
                                               .add(ToCurrencyChanged(selected));
@@ -133,7 +135,8 @@ class ConverterScreen extends StatelessWidget {
                                     .add(const FetchRate());
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white.withOpacity(0.9),
+                                backgroundColor:
+                                    Colors.white.withValues(alpha: 0.9),
                                 foregroundColor: const Color(0xFF4A90E2),
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 50, vertical: 15),

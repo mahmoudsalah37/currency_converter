@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -24,7 +25,9 @@ void main() {
       final currencies = response.data['currencies'] as Map<String, dynamic>;
       expect(currencies.isNotEmpty, true);
 
-      print('Successfully retrieved ${currencies.length} currencies');
+      if (kDebugMode) {
+        print('Successfully retrieved ${currencies.length} currencies');
+      }
     } catch (e) {
       fail('API test failed: $e');
     }
@@ -48,7 +51,9 @@ void main() {
 
       if (response.data['success'] == false) {
         final error = response.data['error']?['info'] ?? 'Unknown error';
-        print('API Error: $error');
+        if (kDebugMode) {
+          print('API Error: $error');
+        }
 
         return;
       }
@@ -62,10 +67,14 @@ void main() {
       expect(rate, isNotNull);
       expect(rate, isA<double>());
 
-      print('Current USD to EUR rate: $rate');
+      if (kDebugMode) {
+        print('Current USD to EUR rate: $rate');
+      }
     } catch (e) {
       if (e is DioException && e.response?.statusCode == 429) {
-        print('Rate limited - skipping test');
+        if (kDebugMode) {
+          print('Rate limited - skipping test');
+        }
         return;
       }
       fail('Exchange rate test failed: $e');
