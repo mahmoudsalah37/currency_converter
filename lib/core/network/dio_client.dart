@@ -11,7 +11,6 @@ import 'api_config.dart';
 class DioClient {
   final Dio _dio;
 
-  // Rate limiting
   static const Duration _baseDelay = Duration(seconds: 1);
   static const Duration _maxDelay = Duration(seconds: 10);
 
@@ -22,10 +21,9 @@ class DioClient {
       baseUrl: 'https://api.exchangerate.host/',
       connectTimeout: const Duration(seconds: 20),
       receiveTimeout: const Duration(seconds: 20),
-      validateStatus: (status) => status! < 500, // Don't throw for 4xx errors
+      validateStatus: (status) => status! < 500,
     );
 
-    // Add interceptors
     _dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) async {
         if (!options.queryParameters.containsKey('access_key')) {
@@ -48,9 +46,9 @@ class DioClient {
     return error.type == DioExceptionType.connectionTimeout ||
         error.type == DioExceptionType.receiveTimeout ||
         error.type == DioExceptionType.sendTimeout ||
-        statusCode == 429 || // Rate limited
-        statusCode == 408 || // Request Timeout
-        (statusCode != null && statusCode >= 500); // Server errors
+        statusCode == 429 ||
+        statusCode == 408 ||
+        (statusCode != null && statusCode >= 500);
   }
 
   Future<Response<T>> _retry<T>(RequestOptions requestOptions) async {
@@ -67,7 +65,6 @@ class DioClient {
         }
       }
 
-      // Exponential backoff with jitter
       final delayMs = min(
         _baseDelay.inMilliseconds * pow(2, retryCount).toInt(),
         _maxDelay.inMilliseconds,

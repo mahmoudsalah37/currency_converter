@@ -48,16 +48,13 @@ void main() {
     test(
       'should return local data when there is no internet connection',
       () async {
-        // arrange
         when(mockConnectivity.checkConnectivity())
             .thenAnswer((_) async => ConnectivityResult.none);
         when(mockLocalDataSource.getCurrencies())
             .thenAnswer((_) async => tCurrencies);
 
-        // act
         final result = await repository.getCurrencies();
 
-        // assert
         verify(mockConnectivity.checkConnectivity());
         verify(mockLocalDataSource.getCurrencies());
         verifyZeroInteractions(mockRemoteDataSource);
@@ -68,7 +65,6 @@ void main() {
     test(
       'should return remote data when online and save it to local storage',
       () async {
-        // arrange
         when(mockConnectivity.checkConnectivity())
             .thenAnswer((_) async => ConnectivityResult.wifi);
         when(mockRemoteDataSource.getCurrencies())
@@ -76,10 +72,8 @@ void main() {
         when(mockLocalDataSource.saveCurrencies(any))
             .thenAnswer((_) async => Future.value());
 
-        // act
         final result = await repository.getCurrencies();
 
-        // assert
         verify(mockConnectivity.checkConnectivity());
         verify(mockRemoteDataSource.getCurrencies());
         verify(mockLocalDataSource.saveCurrencies(tCurrencies));
@@ -90,7 +84,6 @@ void main() {
     test(
       'should return cached data when remote fails but cache exists',
       () async {
-        // arrange
         when(mockConnectivity.checkConnectivity())
             .thenAnswer((_) async => ConnectivityResult.wifi);
         when(mockRemoteDataSource.getCurrencies()).thenThrow(Exception());
@@ -98,10 +91,8 @@ void main() {
         when(mockLocalDataSource.getCurrencies())
             .thenAnswer((_) async => tCurrencies);
 
-        // act
         final result = await repository.getCurrencies();
 
-        // assert
         verify(mockConnectivity.checkConnectivity());
         verify(mockRemoteDataSource.getCurrencies());
         verify(mockLocalDataSource.hasCurrencies());
@@ -125,16 +116,13 @@ void main() {
     test(
       'should return exchange rate when the call to remote data source is successful',
       () async {
-        // arrange
         when(mockConnectivity.checkConnectivity())
             .thenAnswer((_) async => ConnectivityResult.wifi);
         when(mockRemoteDataSource.getLatestRate(any, any))
             .thenAnswer((_) async => tExchangeRateModel);
 
-        // act
         final result = await repository.getLatestRate(tBase, tTarget);
 
-        // assert
         verify(mockConnectivity.checkConnectivity());
         verify(mockRemoteDataSource.getLatestRate(tBase, tTarget));
         expect(result.base, equals(tBase));
@@ -146,7 +134,6 @@ void main() {
     test(
       'should throw an error when base or target currency is empty',
       () async {
-        // act & assert
         expect(
           () => repository.getLatestRate('', tTarget),
           throwsA(isA<ArgumentError>()),
@@ -165,11 +152,9 @@ void main() {
     test(
       'should throw an error when there is no internet connection',
       () async {
-        // arrange
         when(mockConnectivity.checkConnectivity())
             .thenAnswer((_) async => ConnectivityResult.none);
 
-        // act & assert
         expect(
           () => repository.getLatestRate(tBase, tTarget),
           throwsA(predicate((e) =>

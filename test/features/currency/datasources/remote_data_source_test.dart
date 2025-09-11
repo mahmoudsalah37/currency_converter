@@ -16,7 +16,7 @@ void main() {
 
   setUp(() {
     mockDioClient = MockDioClient();
-    // Mock the get method of DioClient to return a successful response
+
     when(
       mockDioClient.get(
         any,
@@ -46,7 +46,6 @@ void main() {
     test(
       'should return list of CurrencyModel when the call to remote data source is successful',
       () async {
-        // arrange
         when(
           mockDioClient.get(
             'list',
@@ -58,10 +57,8 @@ void main() {
               requestOptions: RequestOptions(path: 'list'),
             ));
 
-        // act
         final result = await dataSource.getCurrencies();
 
-        // assert
         expect(result, equals(tCurrencyModels));
         verify(mockDioClient.get('list'));
       },
@@ -70,7 +67,6 @@ void main() {
     test(
       'should throw a ServerException when the response code is 404 or other',
       () async {
-        // arrange
         when(
           mockDioClient.get(
             'list',
@@ -85,13 +81,13 @@ void main() {
           requestOptions: RequestOptions(path: 'list'),
         ));
 
-        // act
         final call = dataSource.getCurrencies;
 
-        // assert
         expect(
           () => call(),
-          throwsA(predicate((e) => e is Exception && e.toString().contains('Failed to load currencies'))),
+          throwsA(predicate((e) =>
+              e is Exception &&
+              e.toString().contains('Failed to load currencies'))),
         );
       },
     );
@@ -120,7 +116,6 @@ void main() {
     test(
       'should return ExchangeRateModel when the call is successful',
       () async {
-        // arrange
         when(mockDioClient.get(
           'live',
           queryParameters: {
@@ -133,10 +128,8 @@ void main() {
               requestOptions: RequestOptions(path: 'live'),
             ));
 
-        // act
         final result = await dataSource.getLatestRate(tBase, tTarget);
 
-        // assert
         expect(result, equals(tExchangeRateModel));
         verify(mockDioClient.get(
           'live',
@@ -151,7 +144,6 @@ void main() {
     test(
       'should throw a ServerException when the API returns an error',
       () async {
-        // arrange
         when(mockDioClient.get(
           'live',
           queryParameters: {
@@ -161,16 +153,16 @@ void main() {
         )).thenThrow(DioException(
           response: Response(
             statusCode: 400,
-            data: {'error': {'info': 'Invalid base currency'}},
+            data: {
+              'error': {'info': 'Invalid base currency'}
+            },
             requestOptions: RequestOptions(path: 'live'),
           ),
           requestOptions: RequestOptions(path: 'live'),
         ));
 
-        // act
         final call = dataSource.getLatestRate;
 
-        // assert
         expect(
           () => call(tBase, tTarget),
           throwsA(predicate((e) =>

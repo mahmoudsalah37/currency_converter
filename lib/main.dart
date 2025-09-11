@@ -7,7 +7,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await configureDependencies();
-  await getIt.allReady(); // Wait for all async dependencies to be ready
+  await getIt.allReady();
   runApp(const MyApp());
 }
 

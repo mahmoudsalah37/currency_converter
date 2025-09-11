@@ -15,11 +15,9 @@ final getIt = GetIt.instance;
   asExtension: false,
 )
 Future<void> configureDependencies() async {
-  // Initialize Hive
   final appDocumentDir = await getApplicationDocumentsDirectory();
   await Hive.initFlutter(appDocumentDir.path);
 
-  // Register dependencies
   $initGetIt(getIt);
 }
 
@@ -29,7 +27,6 @@ abstract class NetworkModule {
   Dio get dio {
     final dio = Dio();
 
-    // Configure default options
     dio.options = BaseOptions(
       connectTimeout: const Duration(seconds: 20),
       receiveTimeout: const Duration(seconds: 20),
