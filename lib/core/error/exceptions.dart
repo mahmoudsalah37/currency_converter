@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 
-/// Base class for all application-specific exceptions
 class AppException implements Exception {
   final String message;
   final int? statusCode;
@@ -12,7 +11,6 @@ class AppException implements Exception {
   String toString() => message;
 }
 
-/// Exception thrown when there's an error with the API
 class ApiException extends AppException {
   final dynamic error;
 
@@ -23,7 +21,6 @@ class ApiException extends AppException {
     this.error,
   });
 
-  /// Create an ApiException from a DioException
   factory ApiException.fromDioException(DioException error) {
     if (error.response != null) {
       return ApiException(
@@ -41,29 +38,24 @@ class ApiException extends AppException {
   }
 }
 
-/// Exception thrown when there's a network connectivity issue
 class NetworkException extends AppException {
   const NetworkException([super.message = 'No internet connection']);
 }
 
-/// Exception thrown when a request times out
 class TimeoutException extends AppException {
   const TimeoutException([super.message = 'Request timed out']);
 }
 
-/// Exception thrown when there's a problem with the API key
 class UnauthorizedException extends ApiException {
   const UnauthorizedException([super.message = 'Invalid or missing API key'])
       : super(statusCode: 401);
 }
 
-/// Exception thrown when the server is unavailable
 class ServerException extends ApiException {
   const ServerException([super.message = 'Server unavailable'])
       : super(statusCode: 503);
 }
 
-/// Exception thrown when the rate limit is exceeded
 class RateLimitException extends ApiException {
   final Duration retryAfter;
 

@@ -9,31 +9,29 @@ class HiveService {
   static const String _exchangeRateBox = 'exchangeRateBox';
   static const Duration _exchangeRateCacheDuration = Duration(hours: 1);
 
-  HiveService._(); // Private constructor
+  HiveService._();
 
   @factoryMethod
   static Future<HiveService> create() async {
     final service = HiveService._();
     await Hive.initFlutter();
-    
+
     if (!Hive.isAdapterRegistered(0)) {
       Hive.registerAdapter(CurrencyHiveModelAdapter());
     }
     if (!Hive.isAdapterRegistered(1)) {
       Hive.registerAdapter(ExchangeRateHiveModelAdapter());
     }
-    
+
     return service;
   }
 
-  // Currency methods
-  Future<Box<CurrencyHiveModel>> get _currencyBoxInstance async => 
+  Future<Box<CurrencyHiveModel>> get _currencyBoxInstance async =>
       await Hive.openBox<CurrencyHiveModel>(_currencyBox);
-      
-  Future<Box<ExchangeRateHiveModel>> get _exchangeRateBoxInstance async => 
+
+  Future<Box<ExchangeRateHiveModel>> get _exchangeRateBoxInstance async =>
       await Hive.openBox<ExchangeRateHiveModel>(_exchangeRateBox);
 
-  // Currency methods
   Future<void> saveCurrencies(List<CurrencyHiveModel> currencies) async {
     final box = await _currencyBoxInstance;
     await box.clear();
@@ -51,19 +49,19 @@ class HiveService {
     final box = await _currencyBoxInstance;
     return box.isNotEmpty;
   }
-  
-  // Exchange rate methods
+
   Future<void> saveExchangeRate(ExchangeRateHiveModel rate) async {
     final box = await _exchangeRateBoxInstance;
     final cacheKey = '${rate.base}_${rate.target}';
     await box.put(cacheKey, rate);
   }
-  
-  Future<ExchangeRateHiveModel?> getExchangeRate(String base, String target) async {
+
+  Future<ExchangeRateHiveModel?> getExchangeRate(
+      String base, String target) async {
     final box = await _exchangeRateBoxInstance;
     final cacheKey = '${base}_$target';
     final rate = box.get(cacheKey);
-    
+
     if (rate != null) {
       final now = DateTime.now();
       final cacheTime = DateTime.fromMillisecondsSinceEpoch(rate.timestamp);
@@ -73,7 +71,7 @@ class HiveService {
     }
     return null;
   }
-  
+
   Future<bool> hasValidExchangeRate(String base, String target) async {
     final rate = await getExchangeRate(base, target);
     return rate != null;
